@@ -22,8 +22,10 @@ build-addon: clean
 
 build-embed: clean
 	mkdir -p $(BUILD_DIR)/embed/LibFreeMedia
-	cp $(SRC_DIR)/LibFreeMedia.lua $(BUILD_DIR)/embed/LibFreeMedia
-	cp LICENSE.md $(BUILD_DIR)/embed/LibFreeMedia
+	echo "--[[" > $(BUILD_DIR)/embed/LibFreeMedia/LibFreeMedia.lua
+	cat LICENSE.md >> $(BUILD_DIR)/embed/LibFreeMedia/LibFreeMedia.lua
+	echo "--]]" >> $(BUILD_DIR)/embed/LibFreeMedia/LibFreeMedia.lua
+	cat $(SRC_DIR)/LibFreeMedia.lua >> $(BUILD_DIR)/embed/LibFreeMedia/LibFreeMedia.lua
 
 release-addon-zip: release
 	7z a -tzip $(RELEASE_DIR)/LibFreeMedia-standalone.zip -w $(BUILD_DIR)/addon/.
