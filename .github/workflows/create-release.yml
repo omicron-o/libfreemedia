@@ -1,0 +1,84 @@
+name: Create Release
+on:
+  push:
+    tags:
+      - 'v*'
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+      - name: build release archives
+        run: make
+      - name: create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: LibFreeMedia ${{ github.ref }}
+          body: LibFreeMedia ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: upload embed zip archive
+        id: upload-embed-zip-archive
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release/LibFreeMedia-embed.zip
+          asset_name: LibFreeMedia-embed-${{ github.ref }}.zip
+          asset_content_type: application/zip
+      - name: upload embed tar.gz archive
+        id: upload-embed-targz-archive
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release/LibFreeMedia-embed.tar.gz
+          asset_name: LibFreeMedia-embed${{ github.ref }}.tar.gz
+          asset_content_type: application/x-gtar
+      - name: upload embed tar.xz archive
+        id: upload-embed-tarxz-archive
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release/LibFreeMedia-embed${{ github.ref }}.tar.xz
+          asset_name: LibFreeMedia-embed.tar.xz
+          asset_content_type: application/x-gtar
+      - name: upload standalone zip archive
+        id: upload-standalone-zip-archive
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release/LibFreeMedia-standalone.zip
+          asset_name: LibFreeMedia-standalone${{ github.ref }}.zip
+          asset_content_type: application/zip
+      - name: upload standalone tar.gz archive
+        id: upload-standalone-targz-archive
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release/LibFreeMedia-standalone.tar.gz
+          asset_name: LibFreeMedia-standalone${{ github.ref }}.tar.gz
+          asset_content_type: application/x-gtar
+      - name: upload standalone tar.xz archive
+        id: upload-standalone-tarxz-archive
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release/LibFreeMedia-standalone.tar.xz
+          asset_name: LibFreeMedia-standalone${{ github.ref }}.tar.xz
+          asset_content_type: application/x-gtar
