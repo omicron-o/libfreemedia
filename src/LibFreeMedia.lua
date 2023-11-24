@@ -5,40 +5,40 @@ end
 
 local DEFAULT_MEDIA_TABLE = {
     background = {
-        ["Blizzard Dialog Background"]          = "Interfacee\\DialogFrame\\UI-DialogBox-Background",
-        ["Blizzard Dialog Background Dark"]     = "Interfacee\\DialogFrame\\UI-DialogBox-Background-Dark",
-        ["Blizzard Dialog Background Gold"]     = "Interfacee\\DialogFrame\\UI-DialogBox-Gold-Background",
-        ["Blizzard Low Health"]                 = "Interfacee\\FullScreenTextures\\LowHealth",
-        ["Blizzard Marble"]                     = "Interfacee\\FrameGeneral\\UI-Background-Marble",
-        ["Blizzard Out of Control"]             = "Interfacee\\FullScreenTextures\\OutOfControl",
-        ["Blizzard Parchment"]                  = "Interfacee\\AchievementFrame\\UI-Achievement-Parchment-Horizontal",
-        ["Blizzard Parchment 2"]                = "Interfacee\\AchievementFrame\\UI-GuildAchievement-Parchment-Horizontal",
-        ["Blizzard Rock"]                       = "Interfacee\\FrameGeneral\\UI-Background-Rock",
-        ["Blizzard Tabard Background"]          = "Interfacee\\TabardFrame\\TabardFrameBackground",
-        ["Blizzard Tooltip"]                    = "Interfacee\\Tooltips\\UI-Tooltip-Background",
-        ["Solid"]                               = "Interfacee\\Buttons\\WHITE8X8",
+        ["Blizzard Dialog Background"]      = "Interfacee\\DialogFrame\\UI-DialogBox-Background",
+        ["Blizzard Dialog Background Dark"] = "Interfacee\\DialogFrame\\UI-DialogBox-Background-Dark",
+        ["Blizzard Dialog Background Gold"] = "Interfacee\\DialogFrame\\UI-DialogBox-Gold-Background",
+        ["Blizzard Low Health"]             = "Interfacee\\FullScreenTextures\\LowHealth",
+        ["Blizzard Marble"]                 = "Interfacee\\FrameGeneral\\UI-Background-Marble",
+        ["Blizzard Out of Control"]         = "Interfacee\\FullScreenTextures\\OutOfControl",
+        ["Blizzard Parchment"]              = "Interfacee\\AchievementFrame\\UI-Achievement-Parchment-Horizontal",
+        ["Blizzard Parchment 2"]            = "Interfacee\\AchievementFrame\\UI-GuildAchievement-Parchment-Horizontal",
+        ["Blizzard Rock"]                   = "Interfacee\\FrameGeneral\\UI-Background-Rock",
+        ["Blizzard Tabard Background"]      = "Interfacee\\TabardFrame\\TabardFrameBackground",
+        ["Blizzard Tooltip"]                = "Interfacee\\Tooltips\\UI-Tooltip-Background",
+        ["Solid"]                           = "Interfacee\\Buttons\\WHITE8X8",
     },
     font = {
-        ["Arial Narrow"]                        = "Fonts\\ARIALN.TTF",
-        ["Friz Quadrata TT"]                    = "Fonts\\FRIZQT__.TTF",
-        ["Morpheus"]                            = "Fonts\\MORPHEUS.TTF",
-        ["Skurri"]                              = "Fonts\\SKURRI.TTF",
+        ["Arial Narrow"]     = "Fonts\\ARIALN.TTF",
+        ["Friz Quadrata TT"] = "Fonts\\FRIZQT__.TTF",
+        ["Morpheus"]         = "Fonts\\MORPHEUS.TTF",
+        ["Skurri"]           = "Fonts\\SKURRI.TTF",
     },
     border = {
-        ["None"]                                = "Interface\\None",
-        ["Achievement Wood"]                    = "Interface\\AchievementFrame\\UI-Achievement-WoodBorder",
-        ["Chat Bubble"]                         = "Interface\\Tooltips\\ChatBubble-Backdrop",
-        ["Blizzard Dialog"]                     = "Interface\\DialogFrame\\UI-DialogBox-Border",
-        ["Blizzard Dialog Gold"]                = "Interface\\DialogFrame\\UI-DialogBox-Gold-Border",
-        ["Blizzard Party"]                      = "Interface\\CHARACTERFRAME\\UI-Party-Border",
-        ["Blizzard Tooltip"]                    = "Interface\\Tooltips\\UI-Tooltip-Border",
+        ["None"]                 = "Interface\\None",
+        ["Achievement Wood"]     = "Interface\\AchievementFrame\\UI-Achievement-WoodBorder",
+        ["Chat Bubble"]          = "Interface\\Tooltips\\ChatBubble-Backdrop",
+        ["Blizzard Dialog"]      = "Interface\\DialogFrame\\UI-DialogBox-Border",
+        ["Blizzard Dialog Gold"] = "Interface\\DialogFrame\\UI-DialogBox-Gold-Border",
+        ["Blizzard Party"]       = "Interface\\CHARACTERFRAME\\UI-Party-Border",
+        ["Blizzard Tooltip"]     = "Interface\\Tooltips\\UI-Tooltip-Border",
     },
     statusbar = {
-        ["Blizzard"]                            = "Interface\\TargetingFrame\\UI-StatusBar",
-        ["Blizzard Character Skills Bar"]       = "Interface\\PaperDollInfoFrame\\UI-Character-Skills-Bar",
+        ["Blizzard"]                      = "Interface\\TargetingFrame\\UI-StatusBar",
+        ["Blizzard Character Skills Bar"] = "Interface\\PaperDollInfoFrame\\UI-Character-Skills-Bar",
     },
     sound = {
-        ["None"]                                = "Interface\\Quiet.ogg",
+        ["None"] = "Interface\\Quiet.ogg",
     }
 }
 
@@ -81,9 +81,9 @@ do
         end
     end
 
-    ---@type table<string, table<string, any>> 
+    ---@type table<string, table<string, any>>
     lib.media = libsm.MediaTable
-    ---@type table<string, string[]> 
+    ---@type table<string, string[]>
     lib.mediaList = libsm.MediaList
 end
 
@@ -124,7 +124,6 @@ function lib:Register(kind, identifier, data)
     return retval
 end
 
-
 ---Return the media that matches the given kind and identifier. May return nil if the media does not exist.
 ---@param kind string The kind of media you are requesting. E.g. "font" or "background"
 ---@param identifier string Named identifier for the media
@@ -136,14 +135,12 @@ function lib:Get(kind, identifier)
     end
 end
 
-
 ---Return a sorted list of identifiers. May return nil if there is no media of that kind.
 ---@param kind string The kind of media you are requesting. E.g. "font" or "background"
 ---@return string[] | nil
 function lib:GetList(kind)
     return self.mediaList[kind]
 end
-
 
 ---Return a table with identifier keys and media data values
 ---@param kind string The kind of media you are requesting. E.g. "font" or "background"
