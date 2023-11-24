@@ -1,4 +1,4 @@
-local lib = LibStub:NewLibrary("LibFreeMedia", 100)
+local lib = LibStub:NewLibrary("LibFreeMedia", 101)
 if not lib then
     return
 end

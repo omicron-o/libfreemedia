@@ -1,7 +1,7 @@
 ## Interface: 100100
 ## Title: LibFreeMedia
 ## Notes: Freely share media between addons
-## Version: 0.1.0
+## Version: 0.1.1
 
 libs/LibStub.lua
 LibFreeMedia.lua
