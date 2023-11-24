@@ -42,6 +42,7 @@ local DEFAULT_MEDIA_TABLE = {
     }
 }
 
+-- Build default media lists from the default media table
 local function MakeDefaultList()
     local lists = {}
     for kind, media in pairs(DEFAULT_MEDIA_TABLE) do
@@ -66,6 +67,18 @@ do
         libsm = LibStub:NewLibrary("LibSharedMedia-3.0", 0)
         libsm.MediaTable = DEFAULT_MEDIA_TABLE
         libsm.MediaList = DEFAULT_MEDIA_LIST
+    else
+        -- Ensure the lists match the tables if we didn't create them
+        for kind, media in pairs(libsm.MediaTable) do
+            if libsm.MediaList[kind] == nil then
+                local mediaList = {}
+                for identifier, _ in pairs(media) do
+                    table.insert(mediaList, identifier)
+                end
+                table.sort(mediaList)
+                libsm.MediaList[kind] = mediaList
+            end
+        end
     end
 
     ---@type table<string, table<string, any>> 
@@ -94,7 +107,7 @@ local function RegisterOne(kind, identifier, data)
     end
 
     media[identifier] = data
-    table.insert(lib.mediaList[kind], identifier)
+    table.insert(mediaList, identifier)
     return true
 end
 
